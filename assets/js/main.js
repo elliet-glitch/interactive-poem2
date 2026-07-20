@@ -1,32 +1,39 @@
-// main.js
+const pixels = document.querySelectorAll(".pixel");
 
-// Define Random Number Function
-function randomNumber(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
 
-// Define divs variable as all divs inside grid container
-let divs = document.querySelectorAll(".grid-container div");
+pixels.forEach(pixel => {
 
-// Define Randomize function
-function randomize() {
-    console.log(divs.length, "randomize!");
+    pixel.addEventListener("click", () => {
 
-    // just the grid divs
-    divs.forEach(function (div) {
-        let scale = randomNumber(.5, 1.2);
-        let translateX = randomNumber(0, 50);
-        let translateY = randomNumber(0, 20);
-        let rotate = randomNumber(0, 360);
+        const x = (Math.random() - 0.5) * 500;
+        const y = Math.random() * 400 + 50;
+        const rotation = Math.random() * 360;
 
-        // 50% of the time ...
-        if (Math.random() > .5) {
-            scale = 1; // don't affect scale
-            translateX = randomNumber(0, 80);
-            translateY = randomNumber(0, 80);
-        }
+        pixel.style.transform =
+            `translate(${x}px, ${y}px) rotate(${rotation}deg)`;
 
-        div.style.transform = `scale(${scale}) translate(${translateX}%, ${translateY}%) rotate(${rotate}deg)`;
+        pixel.style.opacity = "0";
+
     });
-}
-document.addEventListener("click", randomize);
+
+});
+
+
+// slowly rebuild the pixels
+
+document.body.addEventListener("dblclick", () => {
+
+    pixels.forEach((pixel, index) => {
+
+        setTimeout(() => {
+
+            pixel.style.transform =
+                "translate(0,0) rotate(0deg)";
+
+            pixel.style.opacity = "1";
+
+        }, index * 50);
+
+    });
+
+});

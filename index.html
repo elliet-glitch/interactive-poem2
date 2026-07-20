@@ -1,40 +1,77 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Off the Grid</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<!-- 👉 6.3 FINAL
-	Title: Haiku
-	Author(s): xtine burrough
-	Date: 2023
-	License: MIT
-	-->
+    <title>Quiet Pixels Dream of Falling Apart</title>
 
-	<link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
-	<div class="grid-container">
-		<div>A</div>
-		<div>radiant</div>
-		<div class="last">young</div>
+    <main class="canvas">
 
-		<div>woman</div>
-		<div>to</div>
-		<div>light</div>
-		<div>the</div>
-		<div class="last">darkest</div>
+        <h1>Quiet Pixels Dream<br>of Falling Apart</h1>
 
-		<div>corners</div>
-		<div>of</div>
-		<div class="last">winter</div>
-	</div>
+        <div class="pixel-grid">
 
-	<script src="assets/js/main.js"></script>
+            <div class="pixel">✦</div>
+            <div class="pixel">✧</div>
+            <div class="pixel">·</div>
+            <div class="pixel">✦</div>
+            <div class="pixel">○</div>
+
+            <div class="pixel">·</div>
+            <div class="pixel">✧</div>
+            <div class="pixel">✦</div>
+            <div class="pixel">·</div>
+            <div class="pixel">○</div>
+
+            <div class="pixel">✧</div>
+            <div class="pixel">·</div>
+            <div class="pixel">✦</div>
+            <div class="pixel">○</div>
+            <div class="pixel">✧</div>
+
+            <div class="pixel">·</div>
+            <div class="pixel">✦</div>
+            <div class="pixel">✧</div>
+            <div class="pixel">○</div>
+            <div class="pixel">·</div>
+
+        </div>
+
+    </main>
+
+
+    <script src="const pixels = document.querySelectorAll(".pixel");
+
+console.log("JS loaded!");
+console.log(pixels.length + " pixels found");
+
+
+pixels.forEach(pixel => {
+
+    pixel.addEventListener("click", function() {
+
+        console.log("Pixel clicked");
+
+        const x = (Math.random() - 0.5) * 500;
+        const y = Math.random() * 400;
+        const rotation = Math.random() * 360;
+
+        this.style.transform = 
+            `translate(${x}px, ${y}px) rotate(${rotation}deg)`;
+
+        this.style.opacity = "0";
+
+    });
+
+});"></script>
+
 </body>
 
 </html>

@@ -5,24 +5,38 @@ html {
 
 body {
     margin: 1rem;
-    background-color: black;
+    background: #111;
     color: whitesmoke;
     font-size: 5rem;
+    font-family: Georgia, serif;
     overflow: hidden;
 
-    background: black url("../img/flames.gif");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    /* shorthand, but has issues on Safari */
-    /* background: black url("../img/flames.gif") no-repeat center/cover; */
+    transition:
+        background 0.5s,
+        color 0.5s,
+        transform 0.3s;
 }
 
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
-    margin: 10% 4rem 0 4rem;
+    width: 80%;
+    margin: 10% auto;
+}
+
+.grid-container div {
+    text-align: center;
+
+    /* Default state */
+    transform: translate(0, 0) rotate(0deg) scale(1);
+
+    transition:
+        transform 1.2s ease,
+        color 0.4s,
+        filter 0.4s,
+        opacity 0.4s,
+        font-size 0.6s ease;
 }
 
 .last {
@@ -30,25 +44,113 @@ body {
     border-bottom: 2px solid rgb(220, 200, 180);
 }
 
-/* CSS Animation example */
+/* ---------- EXPLOSION ---------- */
 
-/* @keyframes fadeOut {
-    0% { opacity: 1; } 
-    100% { opacity: 0; }
-}
-body {
-    animation-name: fadeOut;
-    animation-duration: 2s;
-} */
-
-/* CSS Transition example */
-
-div {
-    transition-property: transform;
-    transition-duration: 3s;
+.explode {
+    animation: explode 3s forwards;
 }
 
-/* body {
-    transition-property: transform;
-    transition-duration: 3s;
-} */
+@keyframes explode {
+    0% {
+        transform: none;
+    }
+
+    40% {
+        transform:
+            translate(var(--x), var(--y))
+            rotate(var(--r))
+            scale(var(--s));
+    }
+
+    100% {
+        transform:
+            translate(var(--x), var(--y))
+            rotate(var(--r))
+            scale(var(--s));
+    }
+}
+
+/* ---------- GLITCH ---------- */
+
+.glitch {
+    animation: glitch 0.12s infinite;
+    filter: contrast(250%);
+}
+
+@keyframes glitch {
+    0% {
+        transform: translate(0);
+    }
+
+    25% {
+        transform: translate(-6px, 4px);
+    }
+
+    50% {
+        transform: translate(6px, -4px);
+    }
+
+    75% {
+        transform: translate(-4px, -6px);
+    }
+
+    100% {
+        transform: translate(0);
+    }
+}
+
+/* ---------- BACKGROUND FLASH ---------- */
+
+body.glitch {
+    animation: flash 0.2s infinite;
+}
+
+@keyframes flash {
+    0% {
+        background: white;
+        color: black;
+    }
+
+    50% {
+        background: black;
+        color: white;
+    }
+
+    100% {
+        background: #0d0d0d;
+        color: #00ff88;
+    }
+}
+
+/* ---------- RESTORE ---------- */
+
+.restore {
+    animation: restore 1.5s forwards;
+}
+
+@keyframes restore {
+    from {
+        transform:
+            translate(var(--x), var(--y))
+            rotate(var(--r))
+            scale(var(--s));
+    }
+
+    to {
+        transform: none;
+    }
+}
+.pixel {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    width:50px;
+    height:50px;
+
+    cursor:pointer;
+
+    transition:
+        transform 1s ease,
+        opacity 1s ease;
+}
