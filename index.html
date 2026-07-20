@@ -2,19 +2,25 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Quiet Pixels Dream of Falling Apart</title>
 
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="./styles.css">
+
 </head>
 
 <body>
 
     <main class="canvas">
 
-        <h1>Quiet Pixels Dream<br>of Falling Apart</h1>
+        <h1>
+            Quiet Pixels Dream<br>
+            of Falling Apart
+        </h1>
+
 
         <div class="pixel-grid">
 
@@ -47,30 +53,7 @@
     </main>
 
 
-    <script src="const pixels = document.querySelectorAll(".pixel");
-
-console.log("JS loaded!");
-console.log(pixels.length + " pixels found");
-
-
-pixels.forEach(pixel => {
-
-    pixel.addEventListener("click", function() {
-
-        console.log("Pixel clicked");
-
-        const x = (Math.random() - 0.5) * 500;
-        const y = Math.random() * 400;
-        const rotation = Math.random() * 360;
-
-        this.style.transform = 
-            `translate(${x}px, ${y}px) rotate(${rotation}deg)`;
-
-        this.style.opacity = "0";
-
-    });
-
-});"></script>
+    <script src="./main.js"></script>
 
 </body>
 
