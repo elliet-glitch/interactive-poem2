@@ -1,41 +1,90 @@
 const pixels = document.querySelectorAll(".pixel");
 
-console.log("main.js connected!");
+
+console.log("Quiet Pixels loaded");
 console.log(pixels.length + " pixels found");
+
 
 
 pixels.forEach(pixel => {
 
-    pixel.addEventListener("click", function () {
+
+    pixel.addEventListener("click", function(){
+
 
         const x = (Math.random() - 0.5) * 600;
-        const y = Math.random() * 500 + 50;
+
+        const y = Math.random() * 600 + 100;
+
         const rotation = Math.random() * 720;
 
-        this.style.transform =
-            `translate(${x}px, ${y}px) rotate(${rotation}deg)`;
 
-        this.style.opacity = "0.2";
+
+        this.style.transform =
+        `translate(${x}px, ${y}px) rotate(${rotation}deg)`;
+
+
+        this.classList.add("fallen");
+
+
+
+        document.body.classList.add("glitch");
+
+
+        setTimeout(()=>{
+
+            document.body.classList.remove("glitch");
+
+        },150);
+
+
 
     });
+
 
 });
 
 
-// double click restores the pixels
 
-document.body.addEventListener("dblclick", () => {
+// double click restores the dream
 
-    pixels.forEach((pixel, index) => {
+document.body.addEventListener("dblclick", ()=>{
 
-        setTimeout(() => {
+
+    pixels.forEach((pixel,index)=>{
+
+
+        setTimeout(()=>{
+
 
             pixel.style.transform =
-                "translate(0,0) rotate(0deg)";
+            "translate(0,0) rotate(0deg)";
 
-            pixel.style.opacity = "1";
 
-        }, index * 80);
+            pixel.classList.remove("fallen");
+
+
+        }, index * 100);
+
+
+
+    });
+
+
+});
+let broken = 0;
+
+pixels.forEach(pixel => {
+
+    pixel.addEventListener("click", () => {
+
+        broken++;
+
+        if (broken === pixels.length) {
+
+            document.body.style.background = "#000";
+
+        }
 
     });
 
