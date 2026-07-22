@@ -1,91 +1,41 @@
-const pixels = document.querySelectorAll(".pixel");
+function randomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
+const words = document.querySelectorAll(".grid-container div");
 
-console.log("Quiet Pixels loaded");
-console.log(pixels.length + " pixels found");
+function randomize() {
 
+    words.forEach(function(word) {
 
+        let scale = randomNumber(5, 12) / 10;
+        let x = randomNumber(-300, 300);
+        let y = randomNumber(-250, 250);
+        let rotate = randomNumber(-360, 360);
 
-pixels.forEach(pixel => {
-
-
-    pixel.addEventListener("click", function(){
-
-
-        const x = (Math.random() - 0.5) * 600;
-
-        const y = Math.random() * 600 + 100;
-
-        const rotation = Math.random() * 720;
-
-
-
-        this.style.transform =
-        `translate(${x}px, ${y}px) rotate(${rotation}deg)`;
-
-
-        this.classList.add("fallen");
-
-
-
-        document.body.classList.add("glitch");
-
-
-        setTimeout(()=>{
-
-            document.body.classList.remove("glitch");
-
-        },150);
-
-
+        word.style.transform =
+            `translate(${x}px, ${y}px)
+             rotate(${rotate}deg)
+             scale(${scale})`;
 
     });
 
+}
 
-});
+document.addEventListener("click", randomize);
 
+let scattered = false;
 
+document.addEventListener("click", () => {
 
-// double click restores the dream
+    if (!scattered) {
+        randomize();
+    } else {
+        words.forEach(word => {
+            word.style.transform = "translate(0,0) rotate(0deg) scale(1)";
+        });
+    }
 
-document.body.addEventListener("dblclick", ()=>{
-
-
-    pixels.forEach((pixel,index)=>{
-
-
-        setTimeout(()=>{
-
-
-            pixel.style.transform =
-            "translate(0,0) rotate(0deg)";
-
-
-            pixel.classList.remove("fallen");
-
-
-        }, index * 100);
-
-
-
-    });
-
-
-});
-let broken = 0;
-
-pixels.forEach(pixel => {
-
-    pixel.addEventListener("click", () => {
-
-        broken++;
-
-        if (broken === pixels.length) {
-
-            document.body.style.background = "#000";
-
-        }
-
-    });
+    scattered = !scattered;
 
 });
