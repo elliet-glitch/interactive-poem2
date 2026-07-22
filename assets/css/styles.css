@@ -31,9 +31,10 @@ h1 {
 
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 2rem;
-    margin: 10% 4rem 0 4rem;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4rem;
+    width: 80%;
+    margin: 8% auto;
 }
 
 .grid-container div {
